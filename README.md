@@ -42,7 +42,7 @@ Ensure you have the following installed:
 1. Clone the repository:
    ```bash
    git clone https://github.com/larismendi/inventory-management-challenge.git
-   cd inventory-management
+   cd inventory-management-challenge
 
 2. Build and start the application using Docker Compose:
     ```bash
@@ -133,9 +133,49 @@ Ensure you have the following installed:
 | PUT    | /api/products/{id} | Update an existing product |
 | DELETE | /api/products/{id} | Delete a product           |
 
----
+1. **Get all products**
 
-## **Known Issues**
+    ```bash
+    curl --location --request GET 'http://localhost:8080/api/products/1' \
+    --header 'Content-Type: application/json' \
+    --header 'Cookie: JSESSIONID=CEF0138C98690A6D73E15FF27C7F82A5' \
+    --data '{"query":"{\n    cities {\n        city\n        state\n    }\n}","variables":{}}'
 
-1. Ensure the MySQL container is fully initialized before the application connects.
-2. Always use the correct application-dev.properties configuration for development.
+2. **Create a new product**
+
+    ```bash
+    curl --location 'http://localhost:8080/api/products' \
+    --header 'Content-Type: application/json' \
+    --header 'Cookie: JSESSIONID=CEF0138C98690A6D73E15FF27C7F82A5' \
+    --data '{
+        "name": "Producto",
+        "description": "Descripcion",
+        "price": 99.99,
+        "quantity": 10
+    }'
+
+3. **Get product by id**
+
+    ```bash
+    curl --location 'http://localhost:8080/api/products' \
+    --header 'Cookie: JSESSIONID=CEF0138C98690A6D73E15FF27C7F82A5'
+
+4. **Update product**
+
+    ```bash
+    curl --location --request PUT 'http://localhost:8080/api/products/1' \
+    --header 'Content-Type: application/json' \
+    --header 'Cookie: JSESSIONID=CEF0138C98690A6D73E15FF27C7F82A5' \
+    --data '{
+    "name": "Producto",
+    "description": "Descripcion",
+    "price": 119.99,
+    "quantity": 15
+    }'
+
+5. **Delete product**
+
+    ```bash
+    curl --location --request DELETE 'http://localhost:8080/api/products/1' \
+    --header 'Cookie: JSESSIONID=CEF0138C98690A6D73E15FF27C7F82A5'
+
