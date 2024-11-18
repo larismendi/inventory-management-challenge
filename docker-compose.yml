@@ -1,0 +1,40 @@
+services:
+  mysql-db:
+    image: mysql:8.0
+    container_name: mysql-db
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: inventory_management
+      MYSQL_USER: user
+      MYSQL_PASSWORD: password
+    ports:
+      - "3306:3306"
+    networks:
+      - inventory-management-network
+    volumes:
+      - mysql-data:/var/lib/mysql
+
+  inventory-management:
+    build:
+      context: .
+    container_name: inventory-management
+    environment:
+      SPRING_PROFILES_ACTIVE: dev
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql-db:3306/inventory_management
+      SPRING_DATASOURCE_USERNAME: user
+      SPRING_DATASOURCE_PASSWORD: password
+      SPRING_JPA_HIBERNATE_DDL_AUTO: update
+    ports:
+      - "8080:8080"
+    depends_on:
+      - mysql-db
+    networks:
+      - inventory-management-network
+
+networks:
+  inventory-management-network:
+    driver: bridge
+
+volumes:
+  mysql-data:
+    driver: local
