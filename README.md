@@ -50,14 +50,15 @@ Ensure you have the following installed:
 
 3. The application will be available at:
 
-    - API: http://localhost:8080
-    - MySQL Database: localhost:3306
+- API: http://localhost:8080
+- MySQL Database: localhost:3306
+- OpenApi Swagger: http://localhost:8080/swagger-ui/index.html#/
 
 4. Credentials for MySQL (default development configuration):
 
-    - Database: inventory_management
-    - Username: user
-    - Password: password
+- Database: inventory_management
+- Username: user
+- Password: password
 
 ---
 
