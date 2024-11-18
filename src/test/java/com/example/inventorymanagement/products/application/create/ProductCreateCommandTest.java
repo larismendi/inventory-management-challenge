@@ -17,12 +17,12 @@ public class ProductCreateCommandTest {
     private static final String PRODUCT_DESCRIPTION = "Product Description";
     private static final Double PRODUCT_PRICE = 100.0;
     private static final Integer PRODUCT_QUANTITY = 10;
-    private static final String VIOLATION_MESSAGE = "Should have one violation.";
-    private static final String VALIDATE_MESSAGE = "Should be valid when all fields are correct.";
+    private static final String VALID_MESSAGE = "Should be valid when all fields are correct.";
     private static final String INVALID_NAME = "Name should not be blank.";
     private static final String INVALID_DESCRIPTION = "Description should not be blank.";
     private static final String INVALID_PRICE = "Price should not be null.";
     private static final String INVALID_QUANTITY = "Quantity should not be null.";
+    private static final Integer EXPECTED_VIOLATIONS_NUMBER = 1;
 
     private Validator validator;
 
@@ -45,7 +45,7 @@ public class ProductCreateCommandTest {
                 .build();
 
         Set<ConstraintViolation<ProductCreateCommand>> violations = validator.validate(command);
-        assertTrue(violations.isEmpty(), VALIDATE_MESSAGE);
+        assertTrue(violations.isEmpty(), VALID_MESSAGE);
     }
 
     @Test
@@ -59,7 +59,7 @@ public class ProductCreateCommandTest {
 
         Set<ConstraintViolation<ProductCreateCommand>> violations = validator.validate(command);
         assertFalse(violations.isEmpty(), INVALID_NAME);
-        assertEquals(1, violations.size(), VIOLATION_MESSAGE);
+        assertEquals(EXPECTED_VIOLATIONS_NUMBER, violations.size());
     }
 
     @Test
@@ -73,7 +73,7 @@ public class ProductCreateCommandTest {
 
         Set<ConstraintViolation<ProductCreateCommand>> violations = validator.validate(command);
         assertFalse(violations.isEmpty(), INVALID_DESCRIPTION);
-        assertEquals(1, violations.size(), VIOLATION_MESSAGE);
+        assertEquals(EXPECTED_VIOLATIONS_NUMBER, violations.size());
     }
 
     @Test
@@ -87,7 +87,7 @@ public class ProductCreateCommandTest {
 
         Set<ConstraintViolation<ProductCreateCommand>> violations = validator.validate(command);
         assertFalse(violations.isEmpty(), INVALID_PRICE);
-        assertEquals(1, violations.size(), VIOLATION_MESSAGE);
+        assertEquals(EXPECTED_VIOLATIONS_NUMBER, violations.size());
     }
 
     @Test
@@ -101,6 +101,6 @@ public class ProductCreateCommandTest {
 
         Set<ConstraintViolation<ProductCreateCommand>> violations = validator.validate(command);
         assertFalse(violations.isEmpty(), INVALID_QUANTITY);
-        assertEquals(1, violations.size(), VIOLATION_MESSAGE);
+        assertEquals(EXPECTED_VIOLATIONS_NUMBER, violations.size());
     }
 }

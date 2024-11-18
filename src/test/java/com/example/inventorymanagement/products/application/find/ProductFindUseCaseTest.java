@@ -27,7 +27,7 @@ public class ProductFindUseCaseTest {
     private static final Double PRODUCT_B_PRICE = 49.99;
     private static final Integer PRODUCT_A_QUANTITY = 10;
     private static final Integer PRODUCT_B_QUANTITY = 5;
-    private static final String PRODUCT_NOT_FOUND_EXCEPTION_TEMPLATE = "Product with ID %S not found";
+    private static final String PRODUCT_NOT_FOUND_EXCEPTION_TEMPLATE = "Product with ID %s not found";
 
     @Mock
     private ProductQueryRepository productQueryRepository;
