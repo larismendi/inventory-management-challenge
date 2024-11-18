@@ -90,20 +90,19 @@ public class ProductFindUseCaseTest {
 
     @Test
     void testFindProductByIdWhenProductExists() {
-        Long productId = 1L;
         Product product = Product.builder()
-                .id(productId)
+                .id(PRODUCT_A_ID)
                 .name(PRODUCT_A_NAME)
                 .description(PRODUCT_A_DESCRIPTION)
                 .price(PRODUCT_A_PRICE)
                 .quantity(PRODUCT_A_QUANTITY)
                 .build();
-        when(productQueryRepository.findById(productId)).thenReturn(Optional.of(product));
+        when(productQueryRepository.findById(PRODUCT_A_ID)).thenReturn(Optional.of(product));
 
-        Product result = productFindUseCase.findProductById(productId);
+        Product result = productFindUseCase.findProductById(PRODUCT_A_ID);
 
         assertNotNull(result);
-        assertEquals(productId, result.getId());
+        assertEquals(PRODUCT_A_ID, result.getId());
         assertEquals(PRODUCT_A_NAME, result.getName());
     }
 
