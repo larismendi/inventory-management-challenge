@@ -1,32 +1,29 @@
-package com.example.inventorymanagement.products.application.find;
+package com.example.inventorymanagement.products.application.delete;
 
 import com.example.inventorymanagement.products.domain.exception.ProductNotFoundException;
-import com.example.inventorymanagement.products.domain.model.Product;
+import com.example.inventorymanagement.products.domain.repository.ProductCommandRepository;
 import com.example.inventorymanagement.products.domain.repository.ProductQueryRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-
 @Service
-public class ProductFindUseCase {
+public class ProductDeleteUseCase {
 
     private static final String PRODUCT_NOT_FOUND_EXCEPTION_TEMPLATE = "Product with ID %s not found";
 
     private final ProductQueryRepository productQueryRepository;
+    private final ProductCommandRepository productCommandRepository;
 
-    @Autowired
-    public ProductFindUseCase(ProductQueryRepository productQueryRepository) {
+    public ProductDeleteUseCase(ProductQueryRepository productQueryRepository,
+                                ProductCommandRepository productCommandRepository) {
         this.productQueryRepository = productQueryRepository;
+        this.productCommandRepository = productCommandRepository;
     }
 
-    public List<Product> findAllProducts() {
-        return productQueryRepository.findAll();
-    }
-
-    public Product findProductById(Long id) {
-        return productQueryRepository.findById(id)
+    public void deleteProduct(Long id) {
+        productQueryRepository.findById(id)
                 .orElseThrow(() -> new ProductNotFoundException(
                         String.format(PRODUCT_NOT_FOUND_EXCEPTION_TEMPLATE, id)));
+
+        productCommandRepository.deleteById(id);
     }
 }
