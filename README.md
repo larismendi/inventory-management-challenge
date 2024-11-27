@@ -88,7 +88,19 @@ Ensure you have the following installed:
 
 ## **Running Tests**
 
-- The application uses the test profile by default for running tests with the H2 database. To execute the tests:
+- The application uses the test profile by default for running tests with the H2 database.
+- First please check if the java version in your local environment is 17 by running the following command:
+
+  ```bash
+  echo $JAVA_HOME
+
+- If it does not correspond to version 17, you can set it according to your operating system, 
+for example if it were macOS:
+
+  ```bash
+  export JAVA_HOME=$(/usr/libexec/java_home -v 17)
+
+- After defined, to execute the tests:
 
   ```bash
   mvn test
