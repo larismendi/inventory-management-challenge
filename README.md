@@ -137,17 +137,13 @@ Ensure you have the following installed:
 1. **Get all products**
 
     ```bash
-    curl --location --request GET 'http://localhost:8080/api/products/1' \
-    --header 'Content-Type: application/json' \
-    --header 'Cookie: JSESSIONID=CEF0138C98690A6D73E15FF27C7F82A5' \
-    --data '{"query":"{\n    cities {\n        city\n        state\n    }\n}","variables":{}}'
+    curl --location 'http://localhost:8080/api/products'
 
 2. **Create a new product**
 
     ```bash
-    curl --location 'http://localhost:8080/api/products' \
+    curl --location --request POST 'http://localhost:8080/api/products' \
     --header 'Content-Type: application/json' \
-    --header 'Cookie: JSESSIONID=CEF0138C98690A6D73E15FF27C7F82A5' \
     --data '{
         "name": "Producto",
         "description": "Descripcion",
@@ -158,15 +154,13 @@ Ensure you have the following installed:
 3. **Get product by id**
 
     ```bash
-    curl --location 'http://localhost:8080/api/products' \
-    --header 'Cookie: JSESSIONID=CEF0138C98690A6D73E15FF27C7F82A5'
+    curl --location 'http://localhost:8080/api/products/1'
 
 4. **Update product**
 
     ```bash
     curl --location --request PUT 'http://localhost:8080/api/products/1' \
     --header 'Content-Type: application/json' \
-    --header 'Cookie: JSESSIONID=CEF0138C98690A6D73E15FF27C7F82A5' \
     --data '{
     "name": "Producto",
     "description": "Descripcion",
@@ -177,6 +171,5 @@ Ensure you have the following installed:
 5. **Delete product**
 
     ```bash
-    curl --location --request DELETE 'http://localhost:8080/api/products/1' \
-    --header 'Cookie: JSESSIONID=CEF0138C98690A6D73E15FF27C7F82A5'
+    curl --location --request DELETE 'http://localhost:8080/api/products/1'
 
