@@ -107,6 +107,40 @@ for example if it were macOS:
 
 ---
 
+## **Generate Coverage Reports**
+
+1. **Check java version**
+    
+    First please check if the java version in your local environment is 17 by running the following command:
+
+    ```bash
+    echo $JAVA_HOME
+    ```
+    If it does not correspond to version 17, you can set it according to your operating system,
+    for example if it were macOS:
+
+    ```bash
+    export JAVA_HOME=$(/usr/libexec/java_home -v 17)
+    ```
+
+2. **Generate Coverage Report**
+
+    After defined, use the following Maven command to generate the JaCoCo coverage report:
+
+    ```bash
+    mvn clean test jacoco:report
+
+3. **View the Coverage Report**
+
+    The HTML coverage report will be generated in the following location inside project:
+
+    ```bash
+    target/site/jacoco/index.html
+    ```
+    Open this file in a browser to view the coverage details, including instructions, branches, and overall code coverage.
+
+---
+
 ## **Environment Profiles**
 
 - Development (dev): Connects to a MySQL database.
